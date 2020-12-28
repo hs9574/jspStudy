@@ -31,4 +31,13 @@ maven
 	5. 테스트 코드 통과 여부
 	6. 테스트 코드를 제외한 운영코드를 war 파일로 패키징
 	7. 설치된 tomcat의 webapps 폴더에 war 파일 복사
-	
+
+1. 로컬 저장소 생성(jsp 프로젝트)
+   
+2. gitignore 파일 생성
+   (git으로 관리하지 않을 파일, 폴더를 관리)
+   commit을 하기전에 .gitignore 파일에 관리 제외 대상을 등록해야한다
+
+   gitignore.io를 통해 .gitignore의 내용을 손쉽게 작성할 수 있다
+
+3. github에 저장소 생성(jsp)
