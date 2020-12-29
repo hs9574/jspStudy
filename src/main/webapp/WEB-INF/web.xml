@@ -16,9 +16,19 @@
   	<servlet-class>kr.or.ddit.servlet.basic.BasicServlet</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>TimesTablesServlet</servlet-name>
+  	<servlet-class>kr.or.ddit.servlet.basic.TimesTablesServlet</servlet-class>
+  </servlet>
+  
   <!-- servlet에서 처리할 url 매핑 -->
   <servlet-mapping>
   	<servlet-name>basicServlet</servlet-name>
   	<url-pattern>/basicServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>TimesTablesServlet</servlet-name>
+  	<url-pattern>/TimesTablesServlet</url-pattern>
   </servlet-mapping>
 </web-app>
