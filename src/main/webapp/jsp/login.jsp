@@ -14,9 +14,65 @@
 
     <%@include file="/common/common_lib.jsp" %>
 	<%-- common_lib.jsp의 내용을 지금 기술되는 부분에 코드를 복사해서 붙여 넣기 --%>
+	
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="<%= request.getContextPath() %>/css/signin.css" rel="stylesheet">
+    
+    <script>
+    	function getCookieValue(cookieStr, cookieName){
+    		arr = cookieStr.split("; ")
+    		for(i in arr){
+    		    b = arr[i].split("=");
+    		    
+    		    if(b[0] == cookieName){
+    		        return b[1]
+    		    }
+    		}
+    		return ""
+    	}
+    	
+    	//cookiename : 추가하고자 하는 쿠키이름
+    	//cookievalue : 쿠키의 값
+    	//expires : 유효기간(일수)
+    	function addCookie(cookiename, cookievalue, expires){
+    		var dt = new Date();	//지금 현재 날짜 ==> expires 만큼 미래날짜로 변경
+    		dt.setDate(dt.getDate() + parseInt(expires));
+    		console.log(dt);
+    		document.cookie = cookiename + "=" + cookievalue + "; " + "path=/; expires=" + dt.toGMTString();
+    	}
+    	
+    	function deletecookie(cookiename){
+    		addCookie(cookiename, "", -1);
+    	}
+
+		//확인하여 존재할 경우 값설정, 체크
+		$(function(){
+    		if(Cookies.get("rememberme") != null && Cookies.get("userid") != null){
+    			$("#rememberme").prop("checked", true);
+    			$("#userid").val(Cookies.get("userid"));
+    		}
+    		
+    		//signin 아이디를 select
+        	$("#signin").on("click",function(){
+        		//rememberme 체크박스가 체크 되어있는지 확인
+        		
+        		// 체크되어 있을 경우
+        		if($("#rememberme").is(":checked") == true){
+            		// userid input에 있는 값을 userid쿠키로 저장
+            		Cookies.set("userid", $("#userid").val());
+            		// rememberme 쿠키로 Y값을 저장
+            		Cookies.set("rememberme", "Y");
+        		}else{
+        			Cookies.remove("userid");
+        			Cookies.remove("rememberme");
+        		}
+        		// form태그를 이용하여 signin 요청
+        		$("#frm").submit();
+        	})
+    	})
+    </script>
 
   </head>
 
@@ -24,18 +80,18 @@
 
     <div class="container">
 
-      <form class="form-signin" action="<%= request.getContextPath() %>/loginController" method="post">
+      <form class="form-signin" id="frm" action="<%= request.getContextPath() %>/loginController" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="userid" class="sr-only">userid</label>
-        <input type="text" name="userid" id="userid" class="form-control" placeholder="사용자 아이디" value="brown" required autofocus>
+        <input type="text" name="userid" id="userid" class="form-control" placeholder="사용자 아이디" required autofocus>
         <label for="pass" class="sr-only">Password</label>
         <input type="password" name="pass" id="pass" class="form-control" placeholder="Password" value="brownpass" required>
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input type="checkbox" value="remember-me" id="rememberme"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" id="signin">Sign in</button>
       </form>
 
     </div> <!-- /container -->

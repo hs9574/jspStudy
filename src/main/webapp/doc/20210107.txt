@@ -1,0 +1,32 @@
+서버사이드
+cookie는 클라이언트 (javascript)에서 조작이 가능하지만
+서버에서도 (httpServletRequest -요청시 같이 전송된쿠키 정보를 조회
+httpServletResponse -응답시 클라이언트에게 쿠키정보를 추가) 조작이 가능하다
+
+마이바티스 mybtis
+
+마이바티스는 무엇인가?
+마이바티스는 개발자가 지정한 SQL, 저장프로시저 그리고 몇가지 고급 매핑을 지원하는 퍼시스턴스 프레임워크이다.
+마이바티스는 JDBC로 처리하는 상당부분의 코드와 파라미터 설정및 결과 매핑을 대신해준다.
+마이바티스는 데이터베이스 레코드에 원시타입과 Map 인터페이스 그리고 자바 POJO 를 설정해서 매핑하기 위해 XML과 애노테이션을 사용할 수 있다.
+
+mybatis dependency 추가(pom.xml)
+mybatis-config.xml에 데이터베이스 정보 추가하기
+<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+<property name="url" value="jdbc:oracle:thin:@112.220.114.130:1521:xe"/>
+<property name="username" value="mproject"/>
+<property name="password" value="java"/>
+
+XML 설정파일에서 지정하는 마이바티스의 핵심이 되는 설정은 트랜잭션을 제어하기 위한 
+TransactionManager와 함께 데이터베이스 Connection인스턴스를 가져오기 위한
+DataSource를 포함한다. 세부적인 설정은 조금 뒤에
+
+매핑할 sql구문을 추가할 user.xml 추가
+	- namespace를 users로 수정
+
+mybatis-config.xml에 user.xml경로 매핑
+<mappers>
+	<mapper resource="kr/or/ddit/config/mybatis/mapper/user.xml"/>
+</mappers>
+
+mybatis-config.xml를 읽어줄 MybatisUtil 클래스 생성
