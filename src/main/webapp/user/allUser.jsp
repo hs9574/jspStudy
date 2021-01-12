@@ -44,7 +44,7 @@
 							out.write("<td>" + vo.getUserid() + "</td>");
 							out.write("<td>" + vo.getUsernm() + "</td>");
 							out.write("<td>" + vo.getAlias() + "</td>");
-							out.write("<td>" + vo.getReg_dt() + "</td>");
+							out.write("<td>" + vo.getReg_dt_fmt() + "</td>");
 							out.write("</tr>");
 						}
 					%>

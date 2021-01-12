@@ -31,5 +31,11 @@
 	<select id="selectAllUserCnt" resultType="int">
 		select count(*) from users
 	</select>
+	
+	<!-- 사용자 수정 -->
+	<update id="">
+		update users set userid=#{userid}, usernm=#{usernm}, pass=#{pass}, reg_dt=#{reg_dt},
+						 alias=#{alias}, addr1=#{addr1}, addr2=#{addr2}, zipcode=#{zipcode} where userid= #{userid}
+	</update>
 
 </mapper>
