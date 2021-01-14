@@ -41,4 +41,19 @@ public class UserService implements UserServiceI{
 	public List<EmpVo> selectAllEmp() {
 		return dao.selectAllEmp();
 	}
+
+	@Override
+	public int modifyUser(UserVo userVo) {
+		return dao.modifyUser(userVo);
+	}
+
+	@Override
+	public int registUser(UserVo userVo) {
+		return dao.registUser(userVo);
+	}
+
+	@Override
+	public int deleteUser(String userid) {
+		return dao.deleteUser(userid);
+	}
 }

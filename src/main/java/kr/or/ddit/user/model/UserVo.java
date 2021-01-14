@@ -41,7 +41,7 @@ public class UserVo {
 	}
 
 	public String getFilename() {
-		return filename;
+		return filename  == null ? "" : filename;
 	}
 
 	public void setFilename(String filename) {
@@ -49,7 +49,7 @@ public class UserVo {
 	}
 
 	public String getRealfilename() {
-		return realfilename;
+		return realfilename  == null ? "" : realfilename;
 	}
 
 	public void setRealfilename(String realfilename) {
@@ -60,8 +60,20 @@ public class UserVo {
 	public UserVo() {
 	}
 
+	public UserVo(String userid, String usernm, String pass, Date reg_dt, String alias, String addr1,
+			String addr2, String zipcode) {
+		this.userid = userid;
+		this.usernm = usernm;
+		this.pass = pass;
+		this.reg_dt = reg_dt;
+		this.alias = alias;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
+		this.zipcode = zipcode;
+	}
+
 	public String getUserid() {
-		return userid;
+		return userid == null ? "" : userid;
 	}
 
 	public void setUserid(String userid) {
@@ -69,7 +81,7 @@ public class UserVo {
 	}
 
 	public String getUsernm() {
-		return usernm;
+		return usernm == null ? "" : usernm;
 	}
 
 	public void setUsernm(String usernm) {
@@ -77,7 +89,7 @@ public class UserVo {
 	}
 
 	public String getPass() {
-		return pass;
+		return pass == null ? "" : pass;
 	}
 
 	public void setPass(String pass) {
@@ -85,7 +97,7 @@ public class UserVo {
 	}
 
 	public Date getReg_dt() {
-		return reg_dt;
+		return reg_dt == null ? new Date() : reg_dt;
 	}
 
 	public void setReg_dt(Date reg_dt) {
@@ -105,7 +117,7 @@ public class UserVo {
 	}
 
 	public String getAlias() {
-		return alias;
+		return alias == null ? "" : alias;
 	}
 
 	public void setAlias(String alias) {

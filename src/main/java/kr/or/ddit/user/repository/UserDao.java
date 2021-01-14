@@ -33,9 +33,8 @@ public class UserDao implements UserDaoI {
 	@Override
 	public UserVo selectUser(String userid) {
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
-		
-		UserVo user = sqlSession.selectOne("users.selectUser", userid);
-		
+		UserVo user = null;
+		user = sqlSession.selectOne("users.selectUser", userid);
 		sqlSession.close();
 		
 		return user;
@@ -68,6 +67,49 @@ public class UserDao implements UserDaoI {
 		int userCnt = sqlSession.selectOne("users.selectAllUserCnt");
 		sqlSession.close();
 		return userCnt;
+	}
+
+	@Override
+	public int modifyUser(UserVo userVo) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int updateCnt = sqlSession.update("users.modifyUser", userVo);
+		
+		if(updateCnt == 1) {
+			sqlSession.commit();
+		}else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return updateCnt;
+	}
+
+	@Override
+	public int registUser(UserVo userVo) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int insertCnt = sqlSession.insert("users.registUser", userVo);
+		
+
+		if(insertCnt == 1) {
+			sqlSession.commit();
+		}else{
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return insertCnt;
+	}
+
+	@Override
+	public int deleteUser(String userid) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int deleteCnt = sqlSession.delete("users.deleteUser", userid);
+		
+		if(deleteCnt == 1) {
+			sqlSession.commit();
+		}else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return deleteCnt;
 	}
 
 }

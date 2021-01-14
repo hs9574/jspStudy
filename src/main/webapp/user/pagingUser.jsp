@@ -35,6 +35,10 @@ $(function(){
 		$('#userid').val(userid);
 		$('#frm').submit();
 	});
+	
+	$('#insBtn').on("click",function(){
+		location.href= '<%=request.getContextPath() %>/registUser';
+	})
 })
 </script>
 </head>
@@ -73,7 +77,7 @@ $(function(){
 							%>
 						</table>
 					</div>
-					<a class="btn btn-default pull-right">사용자 등록</a>
+					<a id="insBtn" class="btn btn-default pull-right">사용자 등록</a>
 
 					<div class="text-center">
 						<% PageVo vo = ((PageVo)request.getAttribute("pageVo")); 

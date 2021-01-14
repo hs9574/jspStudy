@@ -33,9 +33,20 @@
 	</select>
 	
 	<!-- 사용자 수정 -->
-	<update id="">
-		update users set userid=#{userid}, usernm=#{usernm}, pass=#{pass}, reg_dt=#{reg_dt},
-						 alias=#{alias}, addr1=#{addr1}, addr2=#{addr2}, zipcode=#{zipcode} where userid= #{userid}
+	<update id="modifyUser" parameterType="userVo">
+		update users set usernm=#{usernm}, pass=#{pass}, reg_dt=#{reg_dt},
+						 alias=#{alias}, addr1=#{addr1}, addr2=#{addr2}, zipcode=#{zipcode} where userid=#{userid}
 	</update>
-
+	
+	<!-- 사용자 등록 -->
+	<insert id="registUser" parameterType="userVo">
+		insert into users (userid, usernm, pass, reg_dt, alias, addr1, addr2, zipcode) 
+		values (#{userid}, #{usernm}, #{pass}, #{reg_dt}, #{alias}, #{addr1}, #{addr2}, #{zipcode})
+	</insert>
+	
+	<!-- 사용자 삭제 -->
+	<delete id="deleteUser" parameterType="string">
+		delete from users where userid= #{value}
+	</delete>
+	
 </mapper>
