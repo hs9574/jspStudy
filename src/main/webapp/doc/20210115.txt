@@ -1,0 +1,79 @@
+서버 프로그램 개발
+웹 어플리케이션 아키텍처(MVC Model2 구조)
+Model2 구조
+MVC(Model View Controller)Pattern
+Front Controller Pattern + Command Pattern  (python 장고에서는 mtv라고 부른다)
+
+Model View Controller
+흐름 제어, 사용자의 요청 처리는 컨트롤러에 집중
+모델(비지니스 로직)과 뷰(화면)은 분리 (M과 V는 서로를 모름)
+
+C: servlet(spring mvc, struts)
+M: service-dao
+V: jsp(template engine: thymeleaf, velocity, freemarker, mustache)
+
+model1과 model2의 구분: jsp기반 웹 어플리케이션에서 jsp페이지 역할구분에 따른 구분  (사진)
+
+POJO(스프링때 많이 나오는 용어)
+
+model1 : 요청을 jsp가 접수, 응답도 jsp에서 생성
+    비지니스 로직(model)이 jsp(view)안에서 호출됨
+    만약 다른 jsp(view)에서도 동일한 비지니스 로직(model)을 사용할 경우
+    비지니스 로직의 변경시 많은 코드 수정이 동반된다. -> 유지 보수의 어려움
+   
+model2 : 요청과 응답의 역할을 분리
+		비지니스 로직(model)이 servlet에서 결정, 응답을 별도의 jsp에서 생성
+		역할의 구분으로 종속성이 낮아지고, 추후 확장시 유리
+		초기 개발시 설계에 대한 부담과 늘어나는 코드량
+
+MVC 패턴: Model - View - Controller
+각 역할을 담당하는 객체를 분리
+controller : 요청을 접수, 비지니스 로직을 호출 및 저장(scope)
+Model : 비지니스 로직 처리
+View: 화면 출력을 담당
+
+model1과 다르게 view와 model을 분리
+view에서 필요한 데이터는 scope 객체를 통해 받는다
+
+Front Controller: 모든 요청을 하나의 객체가 접수 받는 형태
+장점 : 1. 모든 요청(request)를 하나의 컨트롤러를 통해 작업을 한 곳에서 수행할 수 있다.
+	 2. 추적(Tracking)이나 보안(Security)를 적용할 때 하나의 컨트롤러에 하기 때문에 편함
+	 3. 파일 구조가 바뀌어도 URL을 유지할 수 있다.
+
+EL
+jsp의 기본 문법을 보완하는 기능의 스크립트 언어 /jsp의 기본 객체 영역의 속성을 쉽게 접근 
+집합객체에 대한 접근 방법
+	- 수치연산,논리연산
+	- java class method 호출기능(커스텀 태그)
+	- el언어의 기본객체 제공
+	- 표현식을 보다 쉽고 간결하게 사용할 수 있는 표현방법
+	- jsp2.0버전(which version)부터 안내되는 규약(spec)
+	- scope 기본객체 영역에 있는 속성 사용
+ex)
+표현식:<td><%=request..getAttribute("requestValue")%></td>
+EL: <td>$(requestValue)</td>
+<c:foreach items="${boardList}" var="vo">
+
+EL기본객체
+pageScope : pageContext 기본 객체에 저장된 속성의<속성, 값>매핑을 저장한 map 객체
+requestScope : request 기본 객체에 저장된 속성의<속성, 값>매핑을 저장한 map 객체
+sessionScope : session 기본 객체에 저장된 속성의<속성, 값>매핑을 저장한 map 객체
+applicationScope : application 기본 객체에 저장된 속성의<속성, 값>매핑을 저장한 map 객체
+(영역명을 사용하지 않은경우 - page, request, session, application 영역을 차례대로 검색)
+
+--JSTL--
+:표준 태그 라이브러리다.
+JSTL 태그의 종류
+CORE 태그
+국제화 태그
+함수 라이브러리
+
+JSTL (JSP Standard Tag Library):커스텀 태그 중 많이 사용되는 것을 모아 만든 스펙
+jsp는 디자이너와 개발자가 같이 만드는 일이 생긴다
+스크립틀릿 코드는 개발자를 위한 코드 ->개발직군이 아닌 사람들에게는 낯선 환경
+개발자 입장에서도 간결한 코드 사용이 가능 -> 코드 reading
+여러 언어로 서비스하는 경우의 국제화 처리
+지역별 통화, 날짜 포맷
+
+JSTL태그 종류
+- Core, 국제화, (함수, XML, 데이터베이스)

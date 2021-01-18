@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,17 +14,14 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="<%=request.getContextPath()%>/../favicon.ico">
+<link rel="icon" href="${pageContext.request.contextPath}/../favicon.ico">
 
 <title>user</title>
-<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap core CSS -->
-<link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css/blog.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<%
-List<UserVo> userList = (List<UserVo>) request.getAttribute("userList");
-%>
 <script>
 //문서 로딩이 완료되고 나서 실행되는 영역
 $(function(){
@@ -43,7 +41,7 @@ $(function(){
 </script>
 </head>
 <body>
-	<form id="frm" action="<%=request.getContextPath()%>/user">
+	<form id="frm" action="${pageContext.request.contextPath}/user">
 		<input type="hidden" name="userid" id="userid" value=""/>
 	</form>
 	<%@ include file="/common/header.jsp"%>
@@ -63,40 +61,38 @@ $(function(){
 								<th>사용자 이름</th>
 								<th>사용자 별명</th>
 								<th>등록일시</th>
-							</tr>
-							<%
-							for (int i = 0; i < userList.size(); i++) {
-								UserVo vo = userList.get(i);
-								out.write("<tr class=user data-userid="+ vo.getUserid() + ">");
-								out.write("<td>" + vo.getUserid() + "</td>");
-								out.write("<td>" + vo.getUsernm() + "</td>");
-								out.write("<td>" + vo.getAlias() + "</td>");
-								out.write("<td>" + vo.getReg_dt_fmt() + "</td>");
-								out.write("</tr>");
-							}
-							%>
+							</tr>	
+							<c:forEach items="${userList}" var="user">
+								<tr class="user" data-userid="${user.userid}">
+								<td>${user.userid}</td>
+								<td>${user.usernm}</td>
+								<td>${user.alias}</td>
+								<td>${user.getReg_dt_fmt()}</td>
+								</tr>
+							</c:forEach>
 						</table>
 					</div>
 					<a id="insBtn" class="btn btn-default pull-right">사용자 등록</a>
 
 					<div class="text-center">
-						<% PageVo vo = ((PageVo)request.getAttribute("pageVo")); 
-						   int pagination = (int)request.getAttribute("pagination");%>
 						<ul class="pagination">
 							<%-- pagination 값이 4이므로 1부터 4까지 4번 반복된다.
 								 전체 사용자수 : 16명
 								 페이지 사이즈 : 5
 								 전체 페이지 수 : 4페이지
 							 --%>
-							 <li class="prev"><a href="<%=request.getContextPath()%>/pagingUser?page=1&pageSize=<%=vo.getPagesize()%>">«</a></li>
-							<%for(int i=1; i<= pagination; i++){
-								if(vo.getPage() == i){ %>
-									<li class="active"><span><%=i %></span></li>
-								<%}else{ %>
-									<li><a href="<%=request.getContextPath()%>/pagingUser?page=<%=i %>&pageSize=<%=vo.getPagesize()%>"><%=i %></a></li>
-								<%}
-							} %>
-							<li class="next"><a href="<%=request.getContextPath()%>/pagingUser?page=<%=pagination %>&pageSize=<%=vo.getPagesize()%>">»</a></li>
+							<li class="prev"><a href="${pageContext.request.contextPath}/pagingUser?page=1&pageSize=${pageVo.pagesize}">«</a></li>
+							<c:forEach begin="1" end="${pagination}" var="i" varStatus="loop">
+								<c:choose>
+									<c:when test="${pageVo.page == i }">
+										<li class="active"><span>${i}</span></li>
+									</c:when>
+									<c:otherwise>
+										<li><a href="${pageContext.request.contextPath}/pagingUser?page=${i}&pageSize=${pageVo.pagesize}">${i}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<li class="next"><a href="${pageContext.request.contextPath}/pagingUser?page=${pagination}&pageSize=${pageVo.pagesize}">»</a></li>
 						</ul>
 					</div>
 				</div>

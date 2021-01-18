@@ -7,12 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap core CSS -->
-<script src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 <!-- Custom styles for this template -->
-<link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css/blog.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
 <% UserVo user = (UserVo)request.getAttribute("user"); %>
 <script>
 //문서 로딩이 완료 되었을 때
@@ -44,7 +44,7 @@ $(function(){
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
 					<div class="col-sm-10">
-						<img src="<%=request.getContextPath()%>/profile/<%= user.getUserid() %>.png"/>
+						<img src="${pageContext.request.contextPath}/profile/<%= user.getUserid() %>.png"/>
 					</div>
 				</div>
 				
@@ -80,7 +80,7 @@ $(function(){
 						<label class="control-label"><%= user.getReg_dt_fmt() %></label>
 					</div>
 				</div>
-				
+				 
 				<div class="form-group">
 					<label for="pass" class="col-sm-2 control-label">도로주소</label>
 					<div class="col-sm-10">
