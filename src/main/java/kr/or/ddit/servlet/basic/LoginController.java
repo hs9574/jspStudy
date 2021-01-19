@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +59,8 @@ public class LoginController extends HttpServlet {
 		//로그인성공 ==> service를 통해 데이터베이스에 저장된 값과 일치할 때
 		// session에 데이터베이스에서 조회한 사용자 정보(userVo)를 저장
 		if(user != null && pass.equals(user.getPass())) {
+			HttpSession session = req.getSession();
+			session.setAttribute("S_USER", user);
 			req.getRequestDispatcher(req.getContextPath() + "/jsp/main.jsp").forward(req, resp);
 		}
 		//로그인 실패
