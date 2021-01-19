@@ -58,7 +58,7 @@ public class RegistUser extends HttpServlet{
 		if(insertCnt == 1) {
 			resp.sendRedirect(req.getContextPath()+"/pagingUser");
 		}else {
-			resp.sendRedirect(req.getContextPath()+"/registUser");
+			doGet(req, resp);
 		}
 	
 		

@@ -15,13 +15,13 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="${pageContext.request.contextPath}/../favicon.ico">
+<link rel="icon" href="${cp}/../favicon.ico">
 
 <title>user</title>
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${cp}/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
+<link href="${cp}/css/dashboard.css" rel="stylesheet">
+<link href="${cp}/css/blog.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 //문서 로딩이 완료되고 나서 실행되는 영역
@@ -36,13 +36,13 @@ $(function(){
 	});
 	
 	$('#insBtn').on("click",function(){
-		location.href= '${pageContext.request.contextPath}/registUser';
+		location.href= '${cp}/registUser';
 	})
 })
 </script>
 </head>
 <body>
-	<form id="frm" action="${pageContext.request.contextPath}/user">
+	<form id="frm" action="${cp}/user">
 		<input type="hidden" name="userid" id="userid" value=""/>
 	</form>
 	<%@ include file="/common/header.jsp"%>
@@ -82,18 +82,18 @@ $(function(){
 								 페이지 사이즈 : 5
 								 전체 페이지 수 : 4페이지
 							 --%>
-							<li class="prev"><a href="${pageContext.request.contextPath}/pagingUser?page=1&pageSize=${pageVo.pagesize}">«</a></li>
+							<li class="prev"><a href="${cp}/pagingUser?page=1&pageSize=${pageVo.pagesize}">«</a></li>
 							<c:forEach begin="1" end="${pagination}" var="i" varStatus="loop">
 								<c:choose>
 									<c:when test="${pageVo.page == i }">
 										<li class="active"><span>${i}</span></li>
 									</c:when>
 									<c:otherwise>
-										<li><a href="${pageContext.request.contextPath}/pagingUser?page=${i}&pageSize=${pageVo.pagesize}">${i}</a></li>
+										<li><a href="${cp}/pagingUser?page=${i}&pageSize=${pageVo.pagesize}">${i}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-							<li class="next"><a href="${pageContext.request.contextPath}/pagingUser?page=${pagination}&pageSize=${pageVo.pagesize}">»</a></li>
+							<li class="next"><a href="${cp}/pagingUser?page=${pagination}&pageSize=${pageVo.pagesize}">»</a></li>
 						</ul>
 					</div>
 				</div>

@@ -80,7 +80,7 @@
 	
 	<h3>url 작성</h3>
 	<a href="<c:url value="/userRegist"/>">사용자 등록</a><br>
-	<a href="${pageContext.request.contextPath}/userRegist">사용자 등록</a><br>
+	<a href="${cp}/userRegist">사용자 등록</a><br>
 	<a href="${cp}/userRegist">사용자 등록</a><br><br>
 	
 	var 속성을 적용하지 않은 경우 : 태그를 작성한 곳에 출력<c:url value="/userRegist"/><br>

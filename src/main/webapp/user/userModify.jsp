@@ -8,12 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${cp}/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap core CSS -->
-<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+<script src="${cp}/js/bootstrap.js"></script>
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
+<link href="${cp}/css/dashboard.css" rel="stylesheet">
+<link href="${cp}/css/blog.css" rel="stylesheet">
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -41,7 +41,7 @@ $(function(){
 		</div>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/userModify" method="post">
+			<form class="form-horizontal" role="form" action="${cp}/userModify" method="post">
 				<input type="hidden" name="userid" value="${user.userid }"/>
 				
 				<div class="form-group">
