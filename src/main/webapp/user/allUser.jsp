@@ -13,12 +13,12 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="<%= request.getContextPath() %>/../favicon.ico">
+<link rel="icon" href="${pageContext.request.contextPath}/../favicon.ico">
 
 <title>user</title>
-<link href="<%= request.getContextPath() %>/css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap core CSS -->
-<link href="<%= request.getContextPath() %>/css/dashboard.css" rel="stylesheet">
-<link href="<%= request.getContextPath() %>/css/blog.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap core CSS -->
+<link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
 <%-- <% List<UserVo> userList =(List<UserVo>) request.getAttribute("userList"); %> --%>
 </head>
 <body>

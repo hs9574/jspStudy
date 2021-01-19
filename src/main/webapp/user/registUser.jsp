@@ -39,12 +39,12 @@ $(function(){
 		</div>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<form class="form-horizontal" role="form" action="<%= request.getContextPath() %>/registUser" method="post">
+			<form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/registUser" method="post">
 				
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="userid" name="userid" placeholder="아이디 입력" value="${userid}">
+						<input type="text" class="form-control" id="userid" name="userid" placeholder="아이디 입력" value="${param.userid}">
 					</div>
 					<div class="col-sm-2">
 						<button type="button" id="checkBtn" class="btn btn-default">중복검사</button>
@@ -54,33 +54,33 @@ $(function(){
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">사용자 이름</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="usernm" name="usernm" placeholder="이름 입력" value="${usernm}">
+						<input type="text" class="form-control" id="usernm" name="usernm" placeholder="이름 입력" value="${param.usernm}">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">별명</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="alias" name="alias" placeholder="별명 입력" value="${alias}">
+						<input type="text" class="form-control" id="alias" name="alias" placeholder="별명 입력" value="${param.alias}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">비밀번호</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="pass" name="pass" placeholder="비밀번호" value="${pass}">
+						<input type="password" class="form-control" id="pass" name="pass" placeholder="비밀번호" value="${param.pass}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="pass" class="col-sm-2 control-label">등록일시</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="reg_dt" name="reg_dt" placeholder="날짜" value="${reg_dt}">
+						<input type="text" class="form-control" id="reg_dt" name="reg_dt" placeholder="날짜" value="${param.reg_dt}">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label for="pass" class="col-sm-2 control-label">도로주소</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="addr1" name="addr1" placeholder="도로주소" value="${addr1}" readonly>
+						<input type="text" class="form-control" id="addr1" name="addr1" placeholder="도로주소" value="${param.addr1}" readonly>
 					</div>
 					<div class="col-sm-2">
 						<button type="button" id="addrBtn" class="btn btn-default">주소검색</button>
@@ -90,14 +90,14 @@ $(function(){
 				<div class="form-group">
 					<label for="pass" class="col-sm-2 control-label">상세주소</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="addr2" name="addr2" placeholder="상세주소" value="${addr2}">
+						<input type="text" class="form-control" id="addr2" name="addr2" placeholder="상세주소" value="${param.addr2}">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label for="pass" class="col-sm-2 control-label">우편번호</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="우편번호" value="${zipcode}" readonly>
+						<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="우편번호" value="${param.zipcode}" readonly>
 					</div>
 				</div>
 

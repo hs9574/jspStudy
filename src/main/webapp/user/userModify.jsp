@@ -1,6 +1,7 @@
 <%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,6 @@
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
-<% UserVo user = (UserVo)request.getAttribute("user"); %>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -41,46 +41,46 @@ $(function(){
 		</div>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<form class="form-horizontal" role="form" action="<%=request.getContextPath() %>/userModify" method="post">
-				<input type="hidden" name="userid" value="<%= user.getUserid() %>"/>
+			<form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/userModify" method="post">
+				<input type="hidden" name="userid" value="${user.userid }"/>
 				
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
 					<div class="col-sm-10">
-						<label class="control-label"><%= user.getUserid() %></label>
+						<label class="control-label">${user.userid }</label>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">사용자 이름</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="usernm" name="usernm" value="<%= user.getUsernm() %>">
+						<input type="text" class="form-control" id="usernm" name="usernm" value="${user.usernm }">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">별명</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="alias" name="alias" value="<%= user.getAlias() %>">
+						<input type="text" class="form-control" id="alias" name="alias" value="${user.alias }">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="userNm" class="col-sm-2 control-label">비밀번호</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="pass" name="pass" value="<%= user.getPass() %>">
+						<input type="password" class="form-control" id="pass" name="pass" value="${user.pass }">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="pass" class="col-sm-2 control-label">등록일시</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="reg_dt" name="reg_dt" value="<%= user.getReg_dt_fmt() %>">
+						<input type="text" class="form-control" id="reg_dt" name="reg_dt" value="<fmt:formatDate value="${user.reg_dt}" pattern="yyyy.MM.dd"/>">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label for="pass" class="col-sm-2 control-label">도로주소</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="addr1" name="addr1" placeholder="도로주소" value="<%= user.getAddr1() %>" readonly>
+						<input type="text" class="form-control" id="addr1" name="addr1" placeholder="도로주소" value="${user.addr1 }" readonly>
 					</div>
 					<div class="col-sm-2">
 						<button type="button" id="addrBtn" class="btn btn-default">주소검색</button>
@@ -90,14 +90,14 @@ $(function(){
 				<div class="form-group">
 					<label for="pass" class="col-sm-2 control-label">상세주소</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="addr2" name="addr2" placeholder="상세주소" value="<%= user.getAddr2() %>">
+						<input type="text" class="form-control" id="addr2" name="addr2" placeholder="상세주소" value="${user.addr2 }">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label for="pass" class="col-sm-2 control-label">우편번호</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="우편번호" value="<%= user.getZipcode() %>"  readonly>
+						<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="우편번호" value="${user.zipcode }"  readonly>
 					</div>
 				</div>
 

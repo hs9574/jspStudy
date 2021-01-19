@@ -36,7 +36,7 @@ $(function(){
 	});
 	
 	$('#insBtn').on("click",function(){
-		location.href= '<%=request.getContextPath() %>/registUser';
+		location.href= '${pageContext.request.contextPath}/registUser';
 	})
 })
 </script>
